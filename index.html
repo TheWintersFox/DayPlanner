@@ -22,25 +22,38 @@
 
 
     <div class="container">
+
         <!-- Timeblocks go here -->
-    </div>
 
-    <script src="lib/moment/moment.min.js"></script>
-
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
-
-            var asdf = (moment().format('MMMM Do YYYY, h:mm:ss a'));
-            $('#currentDay').text(asdf)
-        })
-    </script>
+        <div class="card">
+            <ul class="list-group list-group-horizontal">
+                <li class="list-group-item timeSlot" data-time="9">9:00</li>
+                <input class="list-group-item note" data-input="input-1" data-time="9"></input>
+                <button type="button" class="btn btn-info saveBtn" data-button="btn1">
+                    <img src="assets/images/diskboi.png" width="100px">
+                </button>
+            </ul>
+        </div>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+
+        <script src="lib/moment/moment.min.js"></script>
+
+
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                console.log(moment().format('dddd, MMMM Do/ h:mm:ss a'));
+
+                var asdf = (moment().format('dddd, MMMM Do/ h:mm:ss a'));
+                $('#currentDay').text(asdf)
+            })
+        </script>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 </body>
 
 </html>
