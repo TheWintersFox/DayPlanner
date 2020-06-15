@@ -48,9 +48,11 @@ The following animation demonstrates the application functionality:
 
 
 * The URL of the deployed application.
+https://thewintersfox.github.io/DayPlanner/
 
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
 
+* The URL of the GitHub repository. 
+https://github.com/TheWintersFox/DayPlanner
 
 # References
 
