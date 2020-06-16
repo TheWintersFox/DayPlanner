@@ -12,9 +12,7 @@ This is a dayplanner repository
 
 
 ## WHAT THE CLIENT WANTS
----
 
-## User Story
 
 ```
 AS AN employee with a busy schedule
