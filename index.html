@@ -25,78 +25,7 @@
     </header>
 
 
-    <div class="container">
-
-        <div class="row time-block" id="9">
-            <div class="col-md-1 list-group-item timeSlot" data-time="9">9:00</div>
-            <textarea class="col-md-10 list-group-item note" data-input="input-1" data-time="9"></textarea>
-            <button type="button" class="col-md-1 btn btn-info saveBtn" data-button="btn1"> <i class="far fa-save"></i></button>
-
-        </div>
-
-        <div class="row time-block" id="10">
-            <div class="col-md-1 list-group-item timeSlot" data-time="10">10:00</div>
-            <textarea class="col-md-10 list-group-item note" data-input="input-2" data-time="10"></textarea>
-            <button type="button" class="col-md-1 btn btn-info saveBtn" data-button="btn2"> <i class="far fa-save"></i></button>
-
-        </div>
-
-        <div class="row time-block" id="11">
-            <div class="col-md-1 list-group-item timeSlot" data-time="11">11:00</div>
-            <textarea class="col-md-10 list-group-item note" data-input="input-3" data-time="11"></textarea>
-            <button type="button" class="col-md-1 btn btn-info saveBtn" data-button="btn3"> <i class="far fa-save"></i> </button>
-
-        </div>
-
-        <div class="row time-block" id="12">
-            <div class="col-md-1 list-group-item timeSlot" data-time="12">12:00</div>
-            <textarea class="col-md-10 list-group-item note" data-input="input-4" data-time="12"></textarea>
-            <button type="button" class="col-md-1 btn btn-info saveBtn" data-button="btn4"> <i class="far fa-save"></i></button>
-
-        </div>
-
-        <div class="row time-block" id="13">
-            <div class="col-md-1 list-group-item timeSlot" data-time="13">13:00</div>
-            <textarea class="col-md-10 list-group-item note" data-input="input-5" data-time="13"></textarea>
-            <button type="button" class="col-md-1 btn btn-info saveBtn" data-button="btn5"><i class="far fa-save"></i></button>
-
-        </div>
-
-        <div class="row time-block" id="14">
-            <div class="col-md-1 list-group-item timeSlot" data-time="14">14:00</div>
-            <textarea class="col-md-10 list-group-item note" data-input="input-6" data-time="14"></textarea>
-            <button type="button" class="col-md-1 btn btn-info saveBtn" data-button="btn6"><i class="far fa-save"></i></button>
-
-        </div>
-
-        <div class="row time-block" id="15">
-            <div class="col-md-1 list-group-item timeSlot" data-time="15">15:00</div>
-            <textarea class="col-md-10 list-group-item note" data-input="input-7" data-time="15"></textarea>
-            <button type="button" class="col-md-1 btn btn-info saveBtn" data-button="btn7"> <i class="far fa-save"></i></button>
-
-        </div>
-
-        <div class="row time-block" id="16">
-            <div class="col-md-1 list-group-item timeSlot" data-time="16">16:00</div>
-            <textarea class="col-md-10 list-group-item note" data-input="input-8" data-time="16"></textarea>
-            <button type="button" class="col-md-1 btn btn-info saveBtn" data-button="btn8"> <i class="far fa-save"></i></button>
-
-        </div>
-
-        <div class="row time-block" id="17">
-            <div class="col-md-1 list-group-item timeSlot" data-time="17">17:00</div>
-            <textarea class="col-md-10 list-group-item note" data-input="input-9" data-time="17"></textarea>
-            <button type="button" class="col-md-1 btn btn-info saveBtn" data-button="btn9"> <i class="far fa-save"></i></button>
-
-        </div>
-    </div>
-
-
-
-
-
-
-
+    <div class="container"></div>
 
     <script src="lib/moment/moment.min.js"></script>
 
@@ -106,9 +35,27 @@
     <script>
         //-- Timeblocks go here --//
 
-        // let timeBlocks = ["9", "10", "11", "12", "13", "14", "15", "16", "17"]
+        let timeBlocks = ["9", "10", "11", "12", "13", "14", "15", "16", "17"]
 
-        // $.each(timeBlocks, function(index, value))
+        $.each(timeBlocks, function(index, value) {
+            const rowEl = $('<div>').addClass("row time-block").attr('id', value)
+            const timeSlot = $('<div>').addClass("col-md-1 list-group-item timeSlot").attr('data-time', value).text(value + ":00")
+            const timeText = $('<textarea>').addClass("col-md-10 list-group-item note").attr("data-input", "input-1").attr('data-time', value)
+            const timeButton = $('<button>').addClass("col-md-1 btn btn-info saveBtn").attr("data-button", "btn-1").attr('data-time', value).html("<i class='far fa-save'></i>")
+
+
+            if (value < 20) {
+                timeText.addClass('past')
+            } else if (value === 20) {
+                timeText.addClass('present')
+            } else {
+                timeText.addClass('future')
+            }
+
+            rowEl.append(timeSlot, timeText, timeButton)
+            $('.container').append(rowEl)
+
+        })
 
 
 
