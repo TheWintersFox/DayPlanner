@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
     <title>Work Day Scheduler</title>
@@ -35,43 +36,60 @@
     <script>
         //-- Timeblocks go here --//
 
-        let timeBlocks = ["9", "10", "11", "12", "13", "14", "15", "16", "17"]
 
-        $.each(timeBlocks, function(index, value) {
-            const rowEl = $('<div>').addClass("row time-block").attr('id', value)
-            const timeSlot = $('<div>').addClass("col-md-1 list-group-item timeSlot").attr('data-time', value).text(value + ":00")
-            const timeText = $('<textarea>').addClass("col-md-10 list-group-item note").attr("data-input", "input-1").attr('data-time', value)
-            const timeButton = $('<button>').addClass("col-md-1 btn btn-info saveBtn").attr("data-button", "btn-1").attr('data-time', value).html("<i class='far fa-save'></i>")
+        $(document).ready(function () {
+
+            var currentHour = moment().format("H");
+            console.log(currentHour)
 
 
-            if (value < 20) {
-                timeText.addClass('past')
-            } else if (value === 20) {
-                timeText.addClass('present')
-            } else {
-                timeText.addClass('future')
-            }
-
-            rowEl.append(timeSlot, timeText, timeButton)
-            $('.container').append(rowEl)
-
-        })
+            var retrieveWeekdayMoDay = (moment().format('dddd, MMMM Do/ h:mm:ss a'));
+            $('#currentDay').text(retrieveWeekdayMoDay)
 
 
 
-        $(document).ready(function() {
-
-            var asdf = (moment().format('dddd, MMMM Do/ h:mm:ss a'));
-            $('#currentDay').text(asdf)
-
-
-            $('.btn-info').on('click', function() {
+            $('.btn-info').on('click', function () {
                 var note = $(this).siblings('.col-md-10').val()
                 console.log(note)
                 localStorage.setItem("9", note)
             })
 
+
+
+
+
+
+
+            let timeBlocks = ["9", "10", "11", "12", "13", "14", "15", "16", "17"]
+
+
+
+            $.each(timeBlocks, function (index, value) {
+                const rowEl = $('<div>').addClass("row time-block").attr('id', value)
+                const timeSlot = $('<div>').addClass("col-md-1 list-group-item timeSlot").attr('data-time', value).text(value + ":00")
+                const timeText = $('<textarea>').addClass("col-md-10 list-group-item note").attr("data-input", "input-1").attr('data-time', value)
+                const timeButton = $('<button>').addClass("col-md-1 btn btn-info saveBtn").attr("data-button", "btn-1").attr('data-time', value).html("<i class='far fa-save'></i>")
+
+
+
+
+                if (value - currentHour < 0) {
+                    timeText.addClass('past')
+                } else if (value - currentHour === 0) {
+                    timeText.addClass('present')
+                } else if (value - currentHour > 0)
+                    timeText.addClass('future')
+
+
+                rowEl.append(timeSlot, timeText, timeButton)
+                $('.container').append(rowEl)
+
+            })
+
         })
+
+
+
     </script>
 
 
