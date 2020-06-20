@@ -15,8 +15,6 @@
 
 
 
-
-
 <body>
     <header class="jumbotron">
         <h1 class="display-3">Work Day Scheduler</h1>
@@ -28,9 +26,10 @@
 
     <div class="container"></div>
 
+    <!--Moment library that allows us to use the API to grab the current time, month, day--> 
     <script src="lib/moment/moment.min.js"></script>
 
-
+    <!--jQuery library allowing us to use jQuery-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
     <script>
@@ -38,19 +37,19 @@
 
 
         $(document).ready(function () {
-
+            // Variable that sets the current hour by referencing moment library
             var currentHour = moment().format("H");
             console.log(currentHour)
 
-
+            // Goes into the moment library to retrieve the weekday information, the items that are strings were in documentation and I chose these classes to display similarly to the placeholder
             var retrieveWeekdayMoDay = (moment().format('dddd, MMMM Do/ h:mm:ss a'));
             $('#currentDay').text(retrieveWeekdayMoDay)
 
-
+            // Array for all of the times 
             let timeBlocks = ["9", "10", "11", "12", "13", "14", "15", "16", "17"]
 
 
-
+            // adding in the For each function for the dynamically created timeBlocks array
             $.each(timeBlocks, function (index, value) {
                 const rowEl = $('<div>').addClass("row time-block").attr('id', value)
                 const timeSlot = $('<div>').addClass("col-md-1 list-group-item timeSlot").attr('data-time', value).text(value + ":00")
@@ -59,19 +58,24 @@
 
 
 
-
+                    //Sets the class for the time blocks
+                    // if the time is past your current hour then it will display grey
                 if (value - currentHour < 0) {
                     timeText.addClass('past')
+
+                    //if the time is the same as the current hour then it will display red
                 } else if (value - currentHour === 0) {
                     timeText.addClass('present')
+
+                    //if the time is greater than the current hour it will display green
                 } else if (value - currentHour > 0)
                     timeText.addClass('future')
 
-
+                    //appends the consts we set above to the container element
                 rowEl.append(timeSlot, timeText, timeButton)
                 $('.container').append(rowEl)
 
-
+                    // once button is clicked the storage will be set looking at the text area of the description class.  It will then connect it to the current past or present hour
                 $('.saveBtn').on('click', function () {
                     var activity = $(this).siblings('.description').val()
                     var hour = $(this).parent().attr('id')
@@ -101,7 +105,7 @@
 
     </script>
 
-
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 </body>
 
