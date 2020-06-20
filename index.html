@@ -47,22 +47,6 @@
             $('#currentDay').text(retrieveWeekdayMoDay)
 
 
-
-            $('.btn-info').on('click', function () {
-                var note = $(this).siblings('.col-md-10').val()
-                console.log(note)
-                localStorage.setItem("9", note)
-                window.localStorage.getItem("9", note)
-            })
-
-
-
-
-
-
-
-
-
             let timeBlocks = ["9", "10", "11", "12", "13", "14", "15", "16", "17"]
 
 
@@ -70,7 +54,7 @@
             $.each(timeBlocks, function (index, value) {
                 const rowEl = $('<div>').addClass("row time-block").attr('id', value)
                 const timeSlot = $('<div>').addClass("col-md-1 list-group-item timeSlot").attr('data-time', value).text(value + ":00")
-                const timeText = $('<textarea>').addClass("col-md-10 list-group-item note").attr("data-input", "input-1").attr('data-time', value)
+                const timeText = $('<textarea>').addClass("col-md-10 list-group-item note description").attr("data-input", "input-1").attr('data-time', value)
                 const timeButton = $('<button>').addClass("col-md-1 btn btn-info saveBtn").attr("data-button", "btn-1").attr('data-time', value).html("<i class='far fa-save'></i>")
 
 
@@ -87,9 +71,32 @@
                 rowEl.append(timeSlot, timeText, timeButton)
                 $('.container').append(rowEl)
 
-            })
 
-        })
+                $('.saveBtn').on('click', function () {
+                var activity = $(this).siblings('.description').val()
+                var hour = $(this).parent().attr('id')
+                console.log(activity)
+                var localStorageValue = localStorage.setItem(hour, activity)
+                localStorage.setItem(hour, activity)
+       
+    
+
+                        
+                
+                
+                
+                
+                
+                
+
+            }); 
+            
+            
+            }
+            )
+                
+
+        });
 
 
 
